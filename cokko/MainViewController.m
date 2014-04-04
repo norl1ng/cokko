@@ -17,7 +17,7 @@ static NSString *const PATH = @"burgers.json";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    }
+    } 
     return self;
 }
 

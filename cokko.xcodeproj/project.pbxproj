@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27B2C5E518EEAFDD00ABDA20 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C5E318EEAFDD00ABDA20 /* MainViewController.m */; };
-		27B2C5E618EEAFDD00ABDA20 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B2C5E418EEAFDD00ABDA20 /* MainViewController.xib */; };
-		27B2C5E918EEB0F400ABDA20 /* RESTApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C5E818EEB0F400ABDA20 /* RESTApi.m */; };
-		27B2C5EC18EEB96300ABDA20 /* HamburgerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C5EB18EEB96300ABDA20 /* HamburgerModel.m */; };
 		27B3AB9818EEAEDD00AFD3CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B3AB9718EEAEDD00AFD3CA /* Foundation.framework */; };
 		27B3AB9A18EEAEDD00AFD3CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B3AB9918EEAEDD00AFD3CA /* CoreGraphics.framework */; };
 		27B3AB9C18EEAEDD00AFD3CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B3AB9B18EEAEDD00AFD3CA /* UIKit.framework */; };
@@ -23,6 +19,12 @@
 		27B3ABB318EEAEDD00AFD3CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B3AB9B18EEAEDD00AFD3CA /* UIKit.framework */; };
 		27B3ABBB18EEAEDD00AFD3CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B3ABB918EEAEDD00AFD3CA /* InfoPlist.strings */; };
 		27B3ABBD18EEAEDD00AFD3CA /* cokkoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3ABBC18EEAEDD00AFD3CA /* cokkoTests.m */; };
+		27E5435D190935CE00A252D8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5435B190935CE00A252D8 /* MainViewController.m */; };
+		27E54361190935D600A252D8 /* HamburgerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54360190935D600A252D8 /* HamburgerModel.m */; };
+		27E54364190935DE00A252D8 /* RESTApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54363190935DE00A252D8 /* RESTApi.m */; };
+		27E543661909360800A252D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E543651909360800A252D8 /* MainStoryboard.storyboard */; };
+		27E54369190938D500A252D8 /* CSSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54368190938D500A252D8 /* CSSCell.m */; };
+		27E5436D19095BAA00A252D8 /* CSSHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E5436C19095BAA00A252D8 /* CSSHeaderView.xib */; };
 		FEB8DC0D13664607AC9BB530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5918DACB0D9348AC8FCE6DCE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -38,13 +40,6 @@
 
 /* Begin PBXFileReference section */
 		1690828A761D423FAD51DC88 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		27B2C5E218EEAFDD00ABDA20 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		27B2C5E318EEAFDD00ABDA20 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		27B2C5E418EEAFDD00ABDA20 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		27B2C5E718EEB0F400ABDA20 /* RESTApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTApi.h; sourceTree = "<group>"; };
-		27B2C5E818EEB0F400ABDA20 /* RESTApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTApi.m; sourceTree = "<group>"; };
-		27B2C5EA18EEB96300ABDA20 /* HamburgerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerModel.h; sourceTree = "<group>"; };
-		27B2C5EB18EEB96300ABDA20 /* HamburgerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerModel.m; sourceTree = "<group>"; };
 		27B3AB9418EEAEDD00AFD3CA /* cokko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cokko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B3AB9718EEAEDD00AFD3CA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27B3AB9918EEAEDD00AFD3CA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,6 +56,16 @@
 		27B3ABB818EEAEDD00AFD3CA /* cokkoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cokkoTests-Info.plist"; sourceTree = "<group>"; };
 		27B3ABBA18EEAEDD00AFD3CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		27B3ABBC18EEAEDD00AFD3CA /* cokkoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cokkoTests.m; sourceTree = "<group>"; };
+		27E5435A190935CE00A252D8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		27E5435B190935CE00A252D8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		27E5435F190935D600A252D8 /* HamburgerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerModel.h; sourceTree = "<group>"; };
+		27E54360190935D600A252D8 /* HamburgerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerModel.m; sourceTree = "<group>"; };
+		27E54362190935DE00A252D8 /* RESTApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTApi.h; sourceTree = "<group>"; };
+		27E54363190935DE00A252D8 /* RESTApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTApi.m; sourceTree = "<group>"; };
+		27E543651909360800A252D8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		27E54367190938D500A252D8 /* CSSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSCell.h; sourceTree = "<group>"; };
+		27E54368190938D500A252D8 /* CSSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSCell.m; sourceTree = "<group>"; };
+		27E5436C19095BAA00A252D8 /* CSSHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSSHeaderView.xib; sourceTree = "<group>"; };
 		5918DACB0D9348AC8FCE6DCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,15 +129,11 @@
 		27B3AB9D18EEAEDD00AFD3CA /* cokko */ = {
 			isa = PBXGroup;
 			children = (
+				27E543591909355000A252D8 /* App */,
+				27E543581909354A00A252D8 /* Models */,
+				27E543571909354100A252D8 /* Lib */,
 				27B3ABA618EEAEDD00AFD3CA /* AppDelegate.h */,
 				27B3ABA718EEAEDD00AFD3CA /* AppDelegate.m */,
-				27B2C5E218EEAFDD00ABDA20 /* MainViewController.h */,
-				27B2C5E318EEAFDD00ABDA20 /* MainViewController.m */,
-				27B2C5E418EEAFDD00ABDA20 /* MainViewController.xib */,
-				27B2C5E718EEB0F400ABDA20 /* RESTApi.h */,
-				27B2C5E818EEB0F400ABDA20 /* RESTApi.m */,
-				27B2C5EA18EEB96300ABDA20 /* HamburgerModel.h */,
-				27B2C5EB18EEB96300ABDA20 /* HamburgerModel.m */,
 				27B3ABA918EEAEDD00AFD3CA /* Images.xcassets */,
 				27B3AB9E18EEAEDD00AFD3CA /* Supporting Files */,
 			);
@@ -166,6 +167,45 @@
 				27B3ABB918EEAEDD00AFD3CA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27E543571909354100A252D8 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				27E54362190935DE00A252D8 /* RESTApi.h */,
+				27E54363190935DE00A252D8 /* RESTApi.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		27E543581909354A00A252D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27E5435F190935D600A252D8 /* HamburgerModel.h */,
+				27E54360190935D600A252D8 /* HamburgerModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27E543591909355000A252D8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				27E5436E19095EB400A252D8 /* App init */,
+				27E543651909360800A252D8 /* MainStoryboard.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		27E5436E19095EB400A252D8 /* App init */ = {
+			isa = PBXGroup;
+			children = (
+				27E54367190938D500A252D8 /* CSSCell.h */,
+				27E54368190938D500A252D8 /* CSSCell.m */,
+				27E5436C19095BAA00A252D8 /* CSSHeaderView.xib */,
+				27E5435A190935CE00A252D8 /* MainViewController.h */,
+				27E5435B190935CE00A252D8 /* MainViewController.m */,
+			);
+			name = "App init";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				27B3ABA218EEAEDD00AFD3CA /* InfoPlist.strings in Resources */,
-				27B2C5E618EEAFDD00ABDA20 /* MainViewController.xib in Resources */,
+				27E543661909360800A252D8 /* MainStoryboard.storyboard in Resources */,
 				27B3ABAA18EEAEDD00AFD3CA /* Images.xcassets in Resources */,
+				27E5436D19095BAA00A252D8 /* CSSHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,11 +340,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B2C5EC18EEB96300ABDA20 /* HamburgerModel.m in Sources */,
-				27B2C5E918EEB0F400ABDA20 /* RESTApi.m in Sources */,
+				27E54364190935DE00A252D8 /* RESTApi.m in Sources */,
 				27B3ABA818EEAEDD00AFD3CA /* AppDelegate.m in Sources */,
-				27B2C5E518EEAFDD00ABDA20 /* MainViewController.m in Sources */,
+				27E54361190935D600A252D8 /* HamburgerModel.m in Sources */,
+				27E5435D190935CE00A252D8 /* MainViewController.m in Sources */,
 				27B3ABA418EEAEDD00AFD3CA /* main.m in Sources */,
+				27E54369190938D500A252D8 /* CSSCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

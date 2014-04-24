@@ -18,6 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.2.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CSStickyHeaderFlowLayout (0.1.1)
   - Mantle (1.4.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.4.1)
@@ -31,12 +32,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - CSStickyHeaderFlowLayout
   - Mantle
   - MBProgressHUD (~> 0.8)
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
+  CSStickyHeaderFlowLayout: a8ae07daf418c37b8716e2c69f4570648ea784b8
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269

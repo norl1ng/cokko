@@ -1,4 +1,3 @@
-
 @class RACSignal;
 
 #import <Foundation/Foundation.h>

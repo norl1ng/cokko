@@ -21,6 +21,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet CSStickyHeaderFlowLayout *collectionViewLayout;
 @property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) MPMoviePlayerViewController *moviePlayer;
 
 @end
 
@@ -163,10 +164,29 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     //TODO: loop or fade it out when done
     NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=A-JVT0XHGkQ&list=UUoKazMwDmwZEA6P9Jl2RkpQ"]];
     
-    MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"hd720"]]];
-    mp.moviePlayer.controlStyle = MPMovieControlStyleNone;
-    [mp.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
-    [self.headerView addSubview:mp.view];
+    self.moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"hd720"]]];
+    self.moviePlayer.moviePlayer.controlStyle = MPMovieControlStyleNone;
+
+    [self.moviePlayer.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
+    [self.headerView addSubview:self.moviePlayer.view];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinishPlaying) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];;
+}
+
+- (void)videoDidFinishPlaying {
+    [UIView animateWithDuration:1.0f animations:^{
+        self.moviePlayer.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.moviePlayer.view removeFromSuperview];
+        self.moviePlayer = nil;
+    }];
+}
+
+
+#pragma mark - Dealloc
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

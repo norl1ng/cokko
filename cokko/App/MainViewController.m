@@ -12,6 +12,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import <HCYoutubeParser/HCYoutubeParser.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <TSMessages/TSMessage.h>
+#import "Reachability.h"
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
@@ -32,6 +33,8 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     [self addProgressHud];
     
     [self setupCSStickyHeader];
+    
+    [self checkForTheInternet];
 }
 
 
@@ -49,6 +52,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:CSStickyHeaderParallaxHeader withReuseIdentifier:HEADER_REUSE_IDENTIFIER];
     [self setupDataBindings];
 }
+
 
 #pragma mark - Bind -> model -> view
 
@@ -68,7 +72,6 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 }
 
 
-
 #pragma mark - ProgressHud
 
 - (void)addProgressHud {
@@ -81,9 +84,16 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - Check internet connectiviy
 
 - (void)checkForTheInternet {
-    [TSMessage showNotificationWithTitle:@"Ops!"    
-                                subtitle:@"You sir, has no internetz"
-                                    type:TSMessageNotificationTypeError];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationInViewController:self title:@"Ops!" subtitle:@"You sir, has no internetz!" type:TSMessageNotificationTypeError];
+        });
+    };
+    
+    [reach startNotifier];
 }
 
 #pragma mark - CollectionView Datasource
@@ -143,6 +153,8 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     
     return nil;
 }
+
+#pragma mark - Video
 
 - (void)addVideo {
     NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=A-JVT0XHGkQ&list=UUoKazMwDmwZEA6P9Jl2RkpQ"]];

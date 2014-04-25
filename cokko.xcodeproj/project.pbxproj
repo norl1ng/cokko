@@ -28,6 +28,7 @@
 		27E54370190A743000A252D8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E5436F190A743000A252D8 /* MediaPlayer.framework */; };
 		27E54373190A7D6600A252D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54372190A7D6600A252D8 /* Reachability.m */; };
 		27E54375190A7D8C00A252D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E54374190A7D8C00A252D8 /* SystemConfiguration.framework */; };
+		27E54378190A834D00A252D8 /* UIImage+RoundImageWithBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */; };
 		FEB8DC0D13664607AC9BB530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5918DACB0D9348AC8FCE6DCE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		27E54371190A7D6600A252D8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		27E54372190A7D6600A252D8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		27E54374190A7D8C00A252D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		27E54376190A834D00A252D8 /* UIImage+RoundImageWithBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundImageWithBorder.h"; sourceTree = "<group>"; };
+		27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundImageWithBorder.m"; sourceTree = "<group>"; };
 		5918DACB0D9348AC8FCE6DCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -183,6 +186,8 @@
 		27E543571909354100A252D8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				27E54376190A834D00A252D8 /* UIImage+RoundImageWithBorder.h */,
+				27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */,
 				27E54371190A7D6600A252D8 /* Reachability.h */,
 				27E54372190A7D6600A252D8 /* Reachability.m */,
 				27E54362190935DE00A252D8 /* RESTApi.h */,
@@ -355,6 +360,7 @@
 			files = (
 				27E54364190935DE00A252D8 /* RESTApi.m in Sources */,
 				27B3ABA818EEAEDD00AFD3CA /* AppDelegate.m in Sources */,
+				27E54378190A834D00A252D8 /* UIImage+RoundImageWithBorder.m in Sources */,
 				27E54361190935D600A252D8 /* HamburgerModel.m in Sources */,
 				27E54373190A7D6600A252D8 /* Reachability.m in Sources */,
 				27E5435D190935CE00A252D8 /* MainViewController.m in Sources */,

@@ -13,6 +13,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import <MediaPlayer/MediaPlayer.h>
 #import <TSMessages/TSMessage.h>
 #import "Reachability.h"
+#import "UIImage+RoundImageWithBorder.h"
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
@@ -116,13 +117,15 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     HamburgerModel *hamburger = self.results[indexPath.row];
     
     cell.nameLabel.text = hamburger.title;
-    cell.imageView.image = nil;
 
     RACSignal *getImageSignal = [[RESTApi sharedApi] getImageForHamburger:hamburger];
     
     [getImageSignal subscribeNext:^(id image) {
         if ([image isKindOfClass:[UIImage class]]) {
-            cell.imageView.image = (UIImage *)image;
+
+            CGFloat imageWidth = cell.imageView.frame.size.width;
+            cell.imageView.image = [UIImage roundedImage:(UIImage *)image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
+            
             [cell setNeedsDisplay];
         }
     }];
@@ -132,7 +135,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-#warning ALERT POD, INTERNET
+
     // Check the kind if it's CSStickyHeaderParallaxHeader
     if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
         
@@ -157,6 +160,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - Video
 
 - (void)addVideo {
+    //TODO: loop or fade it out when done
     NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=A-JVT0XHGkQ&list=UUoKazMwDmwZEA6P9Jl2RkpQ"]];
     
     MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"hd720"]]];

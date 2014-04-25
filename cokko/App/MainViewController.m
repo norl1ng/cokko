@@ -1,5 +1,7 @@
 // TODO: Make new video player class
 // TODO: Change HamburgerAPI to HiQ twitter API
+// TODO: Pause when out of view
+// TODO: Bug on first cell not updating it's image
 
 static NSString *const PATH = @"burgers.json";
 static NSString *const CELL_REUSE_IDENTIFIER = @"CSSCell";
@@ -145,6 +147,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
             CGFloat imageWidth = cell.imageView.frame.size.width;
             cell.imageView.image = [UIImage roundedImage:(UIImage *)image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
             [cell.loadingIndicator removeFromSuperview];
+            [cell setNeedsLayout];
             [cell setNeedsDisplay];
         }
     }];

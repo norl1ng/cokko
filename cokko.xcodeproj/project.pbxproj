@@ -25,6 +25,7 @@
 		27E543661909360800A252D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E543651909360800A252D8 /* MainStoryboard.storyboard */; };
 		27E54369190938D500A252D8 /* CSSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54368190938D500A252D8 /* CSSCell.m */; };
 		27E5436D19095BAA00A252D8 /* CSSHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E5436C19095BAA00A252D8 /* CSSHeaderView.xib */; };
+		27E54370190A743000A252D8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E5436F190A743000A252D8 /* MediaPlayer.framework */; };
 		FEB8DC0D13664607AC9BB530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5918DACB0D9348AC8FCE6DCE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		27E54367190938D500A252D8 /* CSSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSCell.h; sourceTree = "<group>"; };
 		27E54368190938D500A252D8 /* CSSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSCell.m; sourceTree = "<group>"; };
 		27E5436C19095BAA00A252D8 /* CSSHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSSHeaderView.xib; sourceTree = "<group>"; };
+		27E5436F190A743000A252D8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5918DACB0D9348AC8FCE6DCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E54370190A743000A252D8 /* MediaPlayer.framework in Frameworks */,
 				27B3AB9A18EEAEDD00AFD3CA /* CoreGraphics.framework in Frameworks */,
 				27B3AB9C18EEAEDD00AFD3CA /* UIKit.framework in Frameworks */,
 				27B3AB9818EEAEDD00AFD3CA /* Foundation.framework in Frameworks */,
@@ -117,6 +120,7 @@
 		27B3AB9618EEAEDD00AFD3CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27E5436F190A743000A252D8 /* MediaPlayer.framework */,
 				27B3AB9718EEAEDD00AFD3CA /* Foundation.framework */,
 				27B3AB9918EEAEDD00AFD3CA /* CoreGraphics.framework */,
 				27B3AB9B18EEAEDD00AFD3CA /* UIKit.framework */,

@@ -9,12 +9,15 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import "CSSCell.h"
 #import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <HCYoutubeParser/HCYoutubeParser.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
 @property (nonatomic, strong) MBProgressHUD *progressHud;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet CSStickyHeaderFlowLayout *collectionViewLayout;
+@property (nonatomic, strong) UIView *headerView;
 
 @end
 
@@ -91,13 +94,26 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CSSCell *cell = (CSSCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
-    cell.nameLabel.text = ((HamburgerModel *)self.results[indexPath.row]).title;
+    HamburgerModel *hamburger = self.results[indexPath.row];
+    
+    cell.nameLabel.text = hamburger.title;
+    cell.imageView.image = nil;
+
+    RACSignal *getImageSignal = [[RESTApi sharedApi] getImageForHamburger:hamburger];
+    
+    [getImageSignal subscribeNext:^(id image) {
+        if ([image isKindOfClass:[UIImage class]]) {
+            cell.imageView.image = (UIImage *)image;
+            [cell setNeedsDisplay];
+        }
+    }];
+    
     
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
+#warning ALERT POD, INTERNET
     // Check the kind if it's CSStickyHeaderParallaxHeader
     if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
         
@@ -105,11 +121,27 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
                                                                             withReuseIdentifier:HEADER_REUSE_IDENTIFIER
                                                                                    forIndexPath:indexPath];
         
+        self.headerView = cell;
+        
+        // Only run if cells have been loaded
+        if (self.results) {
+            [self addVideo];
+        }
+        
         return cell;
         
     }
     
     return nil;
+}
+
+- (void)addVideo {
+    NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=A-JVT0XHGkQ&list=UUoKazMwDmwZEA6P9Jl2RkpQ"]];
+    
+    MPMoviePlayerViewController *mp = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"hd720"]]];
+    mp.moviePlayer.controlStyle = MPMovieControlStyleNone;
+    [mp.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
+    [self.headerView addSubview:mp.view];
 }
 
 @end

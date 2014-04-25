@@ -1,3 +1,6 @@
+// TODO: Make new video player class
+// TODO: Change HamburgerAPI to HiQ twitter API
+
 static NSString *const PATH = @"burgers.json";
 static NSString *const CELL_REUSE_IDENTIFIER = @"CSSCell";
 static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
@@ -22,6 +25,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 @property (strong, nonatomic) IBOutlet CSStickyHeaderFlowLayout *collectionViewLayout;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) MPMoviePlayerViewController *moviePlayer;
+@property (nonatomic, assign) NSTimeInterval videoPlayedDuration;
 
 @end
 
@@ -37,8 +41,22 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     [self setupCSStickyHeader];
     
     [self checkForTheInternet];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"didEnterBackground" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:@"didBecomeActive" object:nil];
 }
 
+- (void)applicationDidEnterBackground {
+    self.videoPlayedDuration = self.moviePlayer.moviePlayer.currentPlaybackTime;
+    [self.moviePlayer.moviePlayer pause];
+}
+
+- (void)applicationDidBecomeActive {
+    // TODO: pause -> play doesn't work as expected. For now readding the videoplayer
+    [self addVideo];
+    [self resumeVidePlayback];
+}
 
 #pragma mark - CSStickyHeader
 
@@ -182,6 +200,11 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     }];
 }
 
+- (void)resumeVidePlayback {
+    if (self.videoPlayedDuration) {
+        self.moviePlayer.moviePlayer.initialPlaybackTime = self.videoPlayedDuration;
+    }
+}
 
 #pragma mark - Dealloc
 

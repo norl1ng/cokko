@@ -2,6 +2,7 @@
 // TODO: Change HamburgerAPI to HiQ twitter API
 // TODO: Pause when out of view
 // TODO: Bug on first cell not updating it's image
+// TODO: When in landscape play movie at fullscreen
 
 static NSString *const PATH = @"burgers.json";
 static NSString *const CELL_REUSE_IDENTIFIER = @"CSSCell";

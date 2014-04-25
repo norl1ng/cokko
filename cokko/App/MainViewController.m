@@ -11,6 +11,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <HCYoutubeParser/HCYoutubeParser.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <TSMessages/TSMessage.h>
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
@@ -76,6 +77,14 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     self.progressHud.labelText = @"Loading burgers";
 }
 
+
+#pragma mark - Check internet connectiviy
+
+- (void)checkForTheInternet {
+    [TSMessage showNotificationWithTitle:@"Ops!"    
+                                subtitle:@"You sir, has no internetz"
+                                    type:TSMessageNotificationTypeError];
+}
 
 #pragma mark - CollectionView Datasource
 

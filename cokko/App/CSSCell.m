@@ -6,10 +6,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor orangeColor];
+
     }
  
     return self;
+}
+
+- (void)awakeFromNib {
+    CAShapeLayer * maskLayer = [CAShapeLayer layer];
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect: self.bounds byRoundingCorners: UIRectCornerBottomRight | UIRectCornerTopRight cornerRadii: (CGSize){42.0f, 42.0f}].CGPath;
+    
+    self.layer.mask = maskLayer;
 }
 
 @end

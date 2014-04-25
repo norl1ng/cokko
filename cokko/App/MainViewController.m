@@ -126,7 +126,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 
             CGFloat imageWidth = cell.imageView.frame.size.width;
             cell.imageView.image = [UIImage roundedImage:(UIImage *)image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
-            
+            [cell.loadingIndicator removeFromSuperview];
             [cell setNeedsDisplay];
         }
     }];

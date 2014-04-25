@@ -35,6 +35,7 @@ PODS:
   - FontAwesomeKit/Zocial (2.1.5):
     - FontAwesomeKit/Core
   - HCYoutubeParser (0.0.1)
+  - HexColors (2.2.1)
   - Mantle (1.4.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.4.1)
@@ -45,6 +46,8 @@ PODS:
   - ReactiveCocoa/Core (2.3):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.3)
+  - TSMessages (0.9.7):
+    - HexColors
 
 DEPENDENCIES:
   - AFNetworking
@@ -54,14 +57,17 @@ DEPENDENCIES:
   - Mantle
   - MBProgressHUD (~> 0.8)
   - ReactiveCocoa
+  - TSMessages
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
   CSStickyHeaderFlowLayout: a8ae07daf418c37b8716e2c69f4570648ea784b8
   FontAwesomeKit: 7d935e100337d503bdaefde2ea16be740b81ed13
   HCYoutubeParser: b5e88f679f613c1bbe58df3e173f46be38dcfbc0
+  HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269
+  TSMessages: 9dd053bcf1a8985275177ebe0fb8c0f1416e92f7
 
 COCOAPODS: 0.32.1

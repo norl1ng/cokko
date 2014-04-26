@@ -1,12 +1,14 @@
 static NSString *const API_URL = @"http://hiqdevtest.appspot.com/";
+//https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterapi&count=2
 
 #import "RESTApi.h"
-#import <AFNetworking/AFNetworking.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "HamburgerModel.h"
+#import "TwitterAuthenticationAPI.h"
 
 @interface RESTApi ()
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+@property (nonatomic, strong) NSDictionary *bearerToken;
 
 @end
 
@@ -26,10 +28,27 @@ static NSString *const API_URL = @"http://hiqdevtest.appspot.com/";
     });
     
     sharedApi.manager = [AFHTTPRequestOperationManager manager];
-    sharedApi.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+#warning TESTING
+    [[TwitterAuthenticationAPI sharedAuthentication] getTwitterBearerToken:^(NSDictionary *token) {
+        if (!sharedApi.bearerToken) {
+            
+            // Set header with base64 encoded access token for all future requests
+            [sharedApi.manager.requestSerializer setValue:[NSString stringWithFormat:@"%@ %@",@"Bearer", token[@"access_token"]] forHTTPHeaderField:@"Authorization"];
+            sharedApi.bearerToken = token;
+            
+            [sharedApi.manager GET:@"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=norl1ng" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"%@", responseObject);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"%@", error);
+            }];
+        }
+    }];
     
     return sharedApi;
 }
+
+#pragma mark - OLD HAMBURGER VERSION
 
 - (RACSignal *)getHamburgersFromPath:(NSString*)path {
     RACSubject *getSignal = [RACSubject subject];

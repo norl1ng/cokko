@@ -4,8 +4,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     return YES;
 }
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didEnterBackground" object:self];

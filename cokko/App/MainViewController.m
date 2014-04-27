@@ -1,17 +1,17 @@
 // TODO: Make new video player class
 // TODO: Change HamburgerAPI to HiQ twitter API
-// TODO: Pause when out of view
+// TODO: Pause when scrolled out of view
+// TODO: Support landscape but play video in fullscreen
 // TODO: Bug on first cell not updating it's image
 // TODO: When in landscape play movie at fullscreen
 
-static NSString *const PATH = @"burgers.json";
 static NSString *const CELL_REUSE_IDENTIFIER = @"CSSCell";
 static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 
 #import "MainViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "RESTApi.h"
-#import "HamburgerModel.h"
+#import "TweetModel.h"
 #import "CSSCell.h"
 #import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -20,6 +20,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import <TSMessages/TSMessage.h>
 #import "Reachability.h"
 #import "UIImage+RoundImageWithBorder.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
@@ -80,7 +81,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - Bind -> model -> view
 
 - (void)setupDataBindings {
-    RACSignal *resultsSignal = [[RESTApi sharedApi] getHamburgersFromPath:PATH];
+    RACSignal *resultsSignal = [[RESTApi sharedApi] getTweetsForTwitterScreenName:@"norl1ng"];
     
     [resultsSignal subscribeNext:^(NSArray *results) {
         self.results = results;
@@ -100,7 +101,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 - (void)addProgressHud {
     self.progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.progressHud.mode = MBProgressHUDModeIndeterminate;
-    self.progressHud.labelText = @"Loading burgers";
+    self.progressHud.labelText = @"Loading tweets";
 }
 
 
@@ -135,16 +136,15 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - CollectionView Delegate
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CSSCell *cell = (CSSCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
-    HamburgerModel *hamburger = self.results[indexPath.row];
+    __block __weak CSSCell *cell = (CSSCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
+    TweetModel *tweet = self.results[indexPath.row];
     
-    cell.nameLabel.text = hamburger.title;
+    cell.nameLabel.text = tweet.userName;
 
-    RACSignal *getImageSignal = [[RESTApi sharedApi] getImageForHamburger:hamburger];
-    
+    RACSignal *getImageSignal = [[RESTApi sharedApi] getProfilePictureForTweet:tweet];
+
     [getImageSignal subscribeNext:^(id image) {
         if ([image isKindOfClass:[UIImage class]]) {
-
             CGFloat imageWidth = cell.imageView.frame.size.width;
             cell.imageView.image = [UIImage roundedImage:(UIImage *)image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
             [cell.loadingIndicator removeFromSuperview];
@@ -167,11 +167,6 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
                                                                                    forIndexPath:indexPath];
         
         self.headerView = cell;
-        
-        // Only run if cells have been loaded
-        if (self.results) {
-            [self addVideo];
-        }
         
         return cell;
         

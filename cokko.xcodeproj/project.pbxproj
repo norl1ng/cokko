@@ -20,7 +20,6 @@
 		27B3ABBB18EEAEDD00AFD3CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B3ABB918EEAEDD00AFD3CA /* InfoPlist.strings */; };
 		27B3ABBD18EEAEDD00AFD3CA /* cokkoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3ABBC18EEAEDD00AFD3CA /* cokkoTests.m */; };
 		27E5435D190935CE00A252D8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5435B190935CE00A252D8 /* MainViewController.m */; };
-		27E54361190935D600A252D8 /* HamburgerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54360190935D600A252D8 /* HamburgerModel.m */; };
 		27E54364190935DE00A252D8 /* RESTApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54363190935DE00A252D8 /* RESTApi.m */; };
 		27E543661909360800A252D8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E543651909360800A252D8 /* MainStoryboard.storyboard */; };
 		27E54369190938D500A252D8 /* CSSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54368190938D500A252D8 /* CSSCell.m */; };
@@ -29,6 +28,7 @@
 		27E54373190A7D6600A252D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54372190A7D6600A252D8 /* Reachability.m */; };
 		27E54375190A7D8C00A252D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E54374190A7D8C00A252D8 /* SystemConfiguration.framework */; };
 		27E54378190A834D00A252D8 /* UIImage+RoundImageWithBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */; };
+		A9B71BDE190BA58B00D914EC /* TweetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B71BDD190BA58B00D914EC /* TweetModel.m */; };
 		A9BB5E14190B0A4900BE9A33 /* TwitterAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BB5E13190B0A4900BE9A33 /* TwitterAuthenticationAPI.m */; };
 		FEB8DC0D13664607AC9BB530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5918DACB0D9348AC8FCE6DCE /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -63,8 +63,6 @@
 		27B3ABBC18EEAEDD00AFD3CA /* cokkoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cokkoTests.m; sourceTree = "<group>"; };
 		27E5435A190935CE00A252D8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		27E5435B190935CE00A252D8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		27E5435F190935D600A252D8 /* HamburgerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerModel.h; sourceTree = "<group>"; };
-		27E54360190935D600A252D8 /* HamburgerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerModel.m; sourceTree = "<group>"; };
 		27E54362190935DE00A252D8 /* RESTApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTApi.h; sourceTree = "<group>"; };
 		27E54363190935DE00A252D8 /* RESTApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTApi.m; sourceTree = "<group>"; };
 		27E543651909360800A252D8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -78,6 +76,8 @@
 		27E54376190A834D00A252D8 /* UIImage+RoundImageWithBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundImageWithBorder.h"; sourceTree = "<group>"; };
 		27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundImageWithBorder.m"; sourceTree = "<group>"; };
 		5918DACB0D9348AC8FCE6DCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B71BDC190BA58B00D914EC /* TweetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetModel.h; sourceTree = "<group>"; };
+		A9B71BDD190BA58B00D914EC /* TweetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetModel.m; sourceTree = "<group>"; };
 		A9BB5E12190B0A4900BE9A33 /* TwitterAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterAuthenticationAPI.h; sourceTree = "<group>"; };
 		A9BB5E13190B0A4900BE9A33 /* TwitterAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterAuthenticationAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,8 +204,8 @@
 		27E543581909354A00A252D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				27E5435F190935D600A252D8 /* HamburgerModel.h */,
-				27E54360190935D600A252D8 /* HamburgerModel.m */,
+				A9B71BDC190BA58B00D914EC /* TweetModel.h */,
+				A9B71BDD190BA58B00D914EC /* TweetModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,10 +364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E54364190935DE00A252D8 /* RESTApi.m in Sources */,
+				A9B71BDE190BA58B00D914EC /* TweetModel.m in Sources */,
 				27B3ABA818EEAEDD00AFD3CA /* AppDelegate.m in Sources */,
 				A9BB5E14190B0A4900BE9A33 /* TwitterAuthenticationAPI.m in Sources */,
 				27E54378190A834D00A252D8 /* UIImage+RoundImageWithBorder.m in Sources */,
-				27E54361190935D600A252D8 /* HamburgerModel.m in Sources */,
 				27E54373190A7D6600A252D8 /* Reachability.m in Sources */,
 				27E5435D190935CE00A252D8 /* MainViewController.m in Sources */,
 				27B3ABA418EEAEDD00AFD3CA /* main.m in Sources */,

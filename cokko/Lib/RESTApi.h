@@ -1,11 +1,11 @@
-@class RACSignal, HamburgerModel;
+@class RACSignal, TweetModel;
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 
 @interface RESTApi : AFHTTPSessionManager
 + (RESTApi *)sharedApi;
-- (RACSignal *)getHamburgersFromPath:(NSString*)path;
-- (RACSignal *)getImageForHamburger:(HamburgerModel *)hamburger;
+- (RACSignal *)getTweetsForTwitterScreenName:(NSString *)screenName;
+- (RACSignal *)getProfilePictureForTweet:(TweetModel *)tweet;
 
 @end

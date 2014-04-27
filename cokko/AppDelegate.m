@@ -8,7 +8,6 @@
     return YES;
 }
 
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didEnterBackground" object:self];
 }

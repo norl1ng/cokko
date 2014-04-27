@@ -28,6 +28,7 @@
 		27E54373190A7D6600A252D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54372190A7D6600A252D8 /* Reachability.m */; };
 		27E54375190A7D8C00A252D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E54374190A7D8C00A252D8 /* SystemConfiguration.framework */; };
 		27E54378190A834D00A252D8 /* UIImage+RoundImageWithBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */; };
+		A99D5E64190D562E00839FE4 /* HiqViedoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99D5E63190D562E00839FE4 /* HiqViedoPlayerViewController.m */; };
 		A9B71BDE190BA58B00D914EC /* TweetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B71BDD190BA58B00D914EC /* TweetModel.m */; };
 		A9BB5E14190B0A4900BE9A33 /* TwitterAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BB5E13190B0A4900BE9A33 /* TwitterAuthenticationAPI.m */; };
 		FEB8DC0D13664607AC9BB530 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5918DACB0D9348AC8FCE6DCE /* libPods.a */; };
@@ -76,6 +77,8 @@
 		27E54376190A834D00A252D8 /* UIImage+RoundImageWithBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundImageWithBorder.h"; sourceTree = "<group>"; };
 		27E54377190A834D00A252D8 /* UIImage+RoundImageWithBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundImageWithBorder.m"; sourceTree = "<group>"; };
 		5918DACB0D9348AC8FCE6DCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A99D5E62190D562E00839FE4 /* HiqViedoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiqViedoPlayerViewController.h; sourceTree = "<group>"; };
+		A99D5E63190D562E00839FE4 /* HiqViedoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiqViedoPlayerViewController.m; sourceTree = "<group>"; };
 		A9B71BDC190BA58B00D914EC /* TweetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetModel.h; sourceTree = "<group>"; };
 		A9B71BDD190BA58B00D914EC /* TweetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetModel.m; sourceTree = "<group>"; };
 		A9BB5E12190B0A4900BE9A33 /* TwitterAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterAuthenticationAPI.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				27E54363190935DE00A252D8 /* RESTApi.m */,
 				A9BB5E12190B0A4900BE9A33 /* TwitterAuthenticationAPI.h */,
 				A9BB5E13190B0A4900BE9A33 /* TwitterAuthenticationAPI.m */,
+				A99D5E62190D562E00839FE4 /* HiqViedoPlayerViewController.h */,
+				A99D5E63190D562E00839FE4 /* HiqViedoPlayerViewController.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				27E54373190A7D6600A252D8 /* Reachability.m in Sources */,
 				27E5435D190935CE00A252D8 /* MainViewController.m in Sources */,
 				27B3ABA418EEAEDD00AFD3CA /* main.m in Sources */,
+				A99D5E64190D562E00839FE4 /* HiqViedoPlayerViewController.m in Sources */,
 				27E54369190938D500A252D8 /* CSSCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

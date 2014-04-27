@@ -43,7 +43,29 @@ static NSString *const TWITTER_BASE_URL = @"https://api.twitter.com/1.1/";
         
         [self.manager.requestSerializer setValue:[NSString stringWithFormat:@"%@ %@", @"Bearer", token[@"access_token"]] forHTTPHeaderField:@"Authorization"];
         self.isAuthenticated = YES;
+        
+        [self getTweetsFromHiQ];
     }];
+}
+
+- (RACSignal *)getTweetsFromHiQ {
+    RACSubject *getCombinedTweetsSignal = [RACSubject subject];
+    
+    RACSignal *hiqinternSignal = [self getTweetsForTwitterScreenName:@"hiqinternat"];
+    RACSignal *stuganSignal = [self getTweetsForTwitterScreenName:@"lsttwit"];
+    
+    __block NSMutableArray *arr = [NSMutableArray new];
+    [[RACSignal combineLatest:@[hiqinternSignal, stuganSignal] reduce:^id (NSArray *hiqTweets, NSArray *stuganTweets) {
+        arr = [NSMutableArray arrayWithArray:hiqTweets];
+        [arr addObjectsFromArray:stuganTweets];
+        [getCombinedTweetsSignal sendNext:[self sortedArrayByDate:arr]];
+        [getCombinedTweetsSignal sendCompleted];
+        return nil;
+    }] subscribeNext:^(id x) {
+        
+    }];
+    
+    return getCombinedTweetsSignal;
 }
 
 /*!
@@ -90,6 +112,14 @@ static NSString *const TWITTER_BASE_URL = @"https://api.twitter.com/1.1/";
 
 
 #pragma mark - Helpers
+
+- (NSArray *)sortedArrayByDate:(NSArray *)array {
+    return [array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *first = [(TweetModel*)a createdAt];
+        NSDate *second = [(TweetModel*)b createdAt];
+        return [first compare:second];
+    }];
+}
 
 - (NSString *)urlPathForScreenName:(NSString *)screenName {
     return [NSString stringWithFormat:@"%@%@%@&count=10", TWITTER_BASE_URL, TWITTER_SCREEN_NAME_URL, screenName];

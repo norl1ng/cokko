@@ -79,7 +79,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - Bind -> model -> view
 
 - (void)setupDataBindings {
-    RACSignal *resultsSignal = [[RESTApi sharedApi] getTweetsForTwitterScreenName:@"lsttwit"];
+    RACSignal *resultsSignal = [[RESTApi sharedApi] getTweetsFromHiQ];
     
     [resultsSignal subscribeNext:^(NSArray *results) {
         self.results = results;

@@ -2,6 +2,7 @@ static NSString *const HIQ_VIDEO_URL = @"https://www.youtube.com/watch?v=A-JVT0X
 
 #import "HiqViedoPlayerViewController.h"
 #import <HCYoutubeParser/HCYoutubeParser.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface HiqViedoPlayerViewController ()
 @property (nonatomic, assign) NSTimeInterval videoPlayedDuration;
@@ -11,19 +12,9 @@ static NSString *const HIQ_VIDEO_URL = @"https://www.youtube.com/watch?v=A-JVT0X
 
 @implementation HiqViedoPlayerViewController
 
-- (instancetype)init {
-    if (self = [super init]) {
-        __weak typeof(self) weakSelf = self;
-        [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:HIQ_VIDEO_URL] completeBlock:^(NSDictionary *videoDictionary, NSError *error) {
-            weakSelf.moviePlayer.contentURL = videoDictionary[@"hd720"];
-        }];
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.moviePlayer.contentURL = [NSURL URLWithString:[[HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:HIQ_VIDEO_URL]] valueForKey:@"hd720"]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"didEnterBackground" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:@"didBecomeActive" object:nil];
@@ -37,7 +28,7 @@ static NSString *const HIQ_VIDEO_URL = @"https://www.youtube.com/watch?v=A-JVT0X
 - (void)applicationDidBecomeActive {
     // TODO: pause -> play doesn't work as expected. For now readding the videoplayer
     [self addVideoPlayerToView:self.containerView];
-    [self resumeVidePlayback];
+    [self resumeVideoPlayback];
 }
 
 - (void)addVideoPlayerToView:(UIView *)view {
@@ -45,10 +36,10 @@ static NSString *const HIQ_VIDEO_URL = @"https://www.youtube.com/watch?v=A-JVT0X
     self.containerView = view;
     self.moviePlayer.controlStyle = MPMovieControlStyleNone;
     
-    [self.moviePlayer.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
-    [self.containerView addSubview:self.moviePlayer.view];
+    [self.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
+    [self.containerView addSubview:self.view];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinishPlaying) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinishPlaying) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 }
 
 - (void)videoDidFinishPlaying {
@@ -59,9 +50,11 @@ static NSString *const HIQ_VIDEO_URL = @"https://www.youtube.com/watch?v=A-JVT0X
     }];
 }
 
-- (void)resumeVidePlayback {
+- (void)resumeVideoPlayback {
     if (self.videoPlayedDuration) {
         self.moviePlayer.initialPlaybackTime = self.videoPlayedDuration;
+    } else {
+        [self.moviePlayer play];
     }
 }
 

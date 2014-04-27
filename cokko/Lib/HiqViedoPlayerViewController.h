@@ -2,6 +2,6 @@
 
 @interface HiqViedoPlayerViewController : MPMoviePlayerViewController
 - (void)addVideoPlayerToView:(UIView *)view;
-- (void)resumeVidePlayback;
+- (void)resumeVideoPlayback;
 
 @end

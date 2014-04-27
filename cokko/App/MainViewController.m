@@ -15,12 +15,10 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import "CSSCell.h"
 #import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import <HCYoutubeParser/HCYoutubeParser.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import <TSMessages/TSMessage.h>
 #import "Reachability.h"
 #import "UIImage+RoundImageWithBorder.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "HiqViedoPlayerViewController.h"
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *results;
@@ -28,8 +26,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet CSStickyHeaderFlowLayout *collectionViewLayout;
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) MPMoviePlayerViewController *moviePlayer;
-@property (nonatomic, assign) NSTimeInterval videoPlayedDuration;
+@property (nonatomic, strong) HiqViedoPlayerViewController *moviePlayer;
 
 @end
 
@@ -40,26 +37,27 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addVideoPlayer];
+    
     [self addProgressHud];
     
     [self setupCSStickyHeader];
     
     [self checkForTheInternet];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"didEnterBackground" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:@"didBecomeActive" object:nil];
 }
 
-- (void)applicationDidEnterBackground {
-    self.videoPlayedDuration = self.moviePlayer.moviePlayer.currentPlaybackTime;
-    [self.moviePlayer.moviePlayer pause];
-}
+#pragma mark - Video player
 
-- (void)applicationDidBecomeActive {
-    // TODO: pause -> play doesn't work as expected. For now readding the videoplayer
-    [self addVideo];
-    [self resumeVidePlayback];
+- (void)addVideoPlayer {
+    __weak typeof(self) weakSelf = self;
+    
+    [[RACObserve(self, headerView) filter:^BOOL(UIView *headerView) {
+        return headerView != nil && !weakSelf.moviePlayer;
+    }] subscribeNext:^(UIView *headerView) {
+        weakSelf.moviePlayer = [[HiqViedoPlayerViewController alloc] init];
+        [weakSelf.moviePlayer addVideoPlayerToView:self.headerView];
+        [weakSelf.moviePlayer resumeVideoPlayback];
+    }];
 }
 
 #pragma mark - CSStickyHeader
@@ -173,42 +171,6 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     }
     
     return nil;
-}
-
-#pragma mark - Video
-
-- (void)addVideo {
-    //TODO: loop or fade it out when done
-    NSDictionary *videos = [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=A-JVT0XHGkQ&list=UUoKazMwDmwZEA6P9Jl2RkpQ"]];
-    
-    self.moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:[videos objectForKey:@"hd720"]]];
-    self.moviePlayer.moviePlayer.controlStyle = MPMovieControlStyleNone;
-
-    [self.moviePlayer.view setFrame:CGRectMake(0, -14.0f, 320.0f, 220.0f)];
-    [self.headerView addSubview:self.moviePlayer.view];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinishPlaying) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];;
-}
-
-- (void)videoDidFinishPlaying {
-    [UIView animateWithDuration:1.0f animations:^{
-        self.moviePlayer.view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.moviePlayer.view removeFromSuperview];
-        self.moviePlayer = nil;
-    }];
-}
-
-- (void)resumeVidePlayback {
-    if (self.videoPlayedDuration) {
-        self.moviePlayer.moviePlayer.initialPlaybackTime = self.videoPlayedDuration;
-    }
-}
-
-#pragma mark - Dealloc
-
--(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -56,7 +56,7 @@ static NSString *const TWITTER_BASE_URL = @"https://api.twitter.com/1.1/";
           filter:^(NSNumber *authenticated) {
               return [authenticated boolValue];
           }] subscribeNext:^(NSNumber *authenticated) {
-             [self.manager GET:[self urlPathForScreenName:@"norl1ng"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             [self.manager GET:[self urlPathForScreenName:screenName] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                  [getSignal sendNext:[self parseTweets:responseObject]];
                  [getSignal sendCompleted];
              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -17,6 +17,8 @@
     maskLayer.path = [UIBezierPath bezierPathWithRoundedRect: self.bounds byRoundingCorners: UIRectCornerBottomRight | UIRectCornerTopRight cornerRadii: (CGSize){42.0f, 42.0f}].CGPath;
     
     self.layer.mask = maskLayer;
+    
+    self.tweetBody.numberOfLines = 0;
 }
 
 @end

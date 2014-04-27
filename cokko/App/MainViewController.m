@@ -79,7 +79,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #pragma mark - Bind -> model -> view
 
 - (void)setupDataBindings {
-    RACSignal *resultsSignal = [[RESTApi sharedApi] getTweetsForTwitterScreenName:@"norl1ng"];
+    RACSignal *resultsSignal = [[RESTApi sharedApi] getTweetsForTwitterScreenName:@"lsttwit"];
     
     [resultsSignal subscribeNext:^(NSArray *results) {
         self.results = results;
@@ -138,7 +138,8 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     TweetModel *tweet = self.results[indexPath.row];
     
     cell.nameLabel.text = tweet.userName;
-
+    cell.tweetBody.text = tweet.tweetText;
+    
     RACSignal *getImageSignal = [[RESTApi sharedApi] getProfilePictureForTweet:tweet];
 
     [getImageSignal subscribeNext:^(id image) {

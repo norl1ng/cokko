@@ -1,9 +1,7 @@
-// TODO: Make new video player class
-// TODO: Change HamburgerAPI to HiQ twitter API
 // TODO: Pause when scrolled out of view
 // TODO: Support landscape but play video in fullscreen
-// TODO: Bug on first cell not updating it's image
 // TODO: When in landscape play movie at fullscreen
+// TODO: Handle tweet links och images
 
 static NSString *const CELL_REUSE_IDENTIFIER = @"CSSCell";
 static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
@@ -155,6 +153,10 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         NSLog(@"Could not get profile picture for tweet:%@", tweet);
     }];
+    
+    cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:tweet.createdAt
+                                                         dateStyle:NSDateFormatterShortStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
     
     return cell;
 }

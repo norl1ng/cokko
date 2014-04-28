@@ -90,26 +90,6 @@ static NSString *const TWITTER_BASE_URL = @"https://api.twitter.com/1.1/";
     return getSignal;
 }
 
-- (RACSignal *)getProfilePictureForTweet:(TweetModel *)tweet {
-
-    RACSubject *getSignal = [RACSubject subject];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:tweet.userProfilePicture];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
-                                         initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [getSignal sendNext:responseObject];
-        [getSignal sendCompleted];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [getSignal sendError:error];
-    }
-     ];
-    [operation start];
-    
-    return [getSignal deliverOn:[RACScheduler mainThreadScheduler]];
-}
-
 
 #pragma mark - Helpers
 

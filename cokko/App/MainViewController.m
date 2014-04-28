@@ -18,6 +18,7 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
 #import <TSMessages/TSMessage.h>
 #import "Reachability.h"
 #import "UIImage+RoundImageWithBorder.h"
+#import "UIImageView+AFNetworking.h"
 #import "HiqViedoPlayerViewController.h"
 
 @interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -137,21 +138,23 @@ static NSString *const HEADER_REUSE_IDENTIFIER = @"CSSHeaderView";
     __block __weak CSSCell *cell = (CSSCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
     TweetModel *tweet = self.results[indexPath.row];
     
+    return [self configureCell:cell withTweet:tweet];
+}
+
+- (CSSCell *)configureCell:(CSSCell *)cell_ withTweet:(TweetModel *)tweet {
+    __block __weak CSSCell *cell = cell_;
+    
     cell.nameLabel.text = tweet.userName;
     cell.tweetBody.text = tweet.tweetText;
     
-    RACSignal *getImageSignal = [[RESTApi sharedApi] getProfilePictureForTweet:tweet];
-
-    [getImageSignal subscribeNext:^(id image) {
-        if ([image isKindOfClass:[UIImage class]]) {
-            CGFloat imageWidth = cell.imageView.frame.size.width;
-            cell.imageView.image = [UIImage roundedImage:(UIImage *)image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
-            [cell.loadingIndicator removeFromSuperview];
-            [cell setNeedsLayout];
-            [cell setNeedsDisplay];
-        }
+    [cell.imageView setImageWithURL:tweet.userProfilePicture];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:tweet.userProfilePicture];
+    [cell.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        CGFloat imageWidth = cell.imageView.frame.size.width;
+        cell.imageView.image = [UIImage roundedImage:image size:CGSizeMake(imageWidth, imageWidth) radius:imageWidth / 2.0f];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"Could not get profile picture for tweet:%@", tweet);
     }];
-    
     
     return cell;
 }

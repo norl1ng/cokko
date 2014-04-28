@@ -9,12 +9,12 @@
     
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    // Create the clipping path and add it
+
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:imageFrame];
     [path addClip];
     [image drawInRect:imageFrame];
     
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor] CGColor]);
     [path setLineWidth:5.0f];
     [path stroke];
     

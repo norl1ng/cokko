@@ -1,5 +1,5 @@
 #import "TweetModel.h"
-
+#import "RESTApi.h"
 @implementation TweetModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     
@@ -50,6 +50,14 @@
     }];
 }
 
++ (NSValueTransformer *)createdAtTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
+}
+
 + (NSString *)removeNewlineCharactersFromString:(NSString *)string {
     return [string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 }
@@ -59,14 +67,6 @@
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
     return dateFormatter;
-}
-
-+ (NSValueTransformer *)createdAtTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [self.dateFormatter dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [self.dateFormatter stringFromDate:date];
-    }];
 }
 
 @end
